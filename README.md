@@ -5,6 +5,8 @@
 ## 기능
 
 - 특정 경기 ID로 라인업 정보 조회
+- 특정 날짜의 모든 KBO 경기 라인업 정보 조회
+- 오늘 날짜의 모든 KBO 경기 라인업 정보 조회
 - 라인업 정보를 콘솔에 표시
 - 라인업 정보를 JSON 파일로 저장
 
@@ -29,9 +31,24 @@ python main.py 게임ID
 python main.py 20250525LTHH02025
 ```
 
+오늘 날짜의 모든 KBO 경기 라인업 가져오기:
+```
+python main.py -t
+```
+
+특정 날짜의 모든 KBO 경기 라인업 가져오기:
+```
+python main.py -d YYYYMMDD
+```
+
+예시:
+```
+python main.py -d 20250527
+```
+
 출력 디렉토리 지정 (기본값: lineups):
 ```
-python main.py 게임ID -o 출력디렉토리
+python main.py -t -o 출력디렉토리
 ```
 
 ### 구조
@@ -43,8 +60,9 @@ KBOLineUp/
 ├── src/                  # 소스 코드
 │   ├── crawlers/         # 크롤러 모듈
 │   │   ├── __init__.py
-│   │   ├── kbo_lineup_crawler.py  # KBO 공식 사이트 크롤러 (미구현)
-│   │   └── naver_lineup_crawler.py # 네이버 스포츠 크롤러
+│   │   ├── kbo_lineup_crawler.py    # KBO 공식 사이트 크롤러 (미구현)
+│   │   ├── naver_lineup_crawler.py  # 네이버 스포츠 라인업 크롤러
+│   │   └── naver_schedule_crawler.py # 네이버 스포츠 일정 크롤러
 │   ├── models/           # 데이터 모델
 │   │   ├── __init__.py
 │   │   └── lineup.py     # 라인업 데이터 모델
@@ -57,7 +75,8 @@ KBOLineUp/
 
 ## TODO
 
-- 특정 날짜의 모든 경기 라인업 조회 기능 구현
+- ✅ 특정 날짜의 모든 경기 라인업 조회 기능 구현
+- ✅ 오늘 날짜의 모든 경기 라인업 조회 기능 구현
 - KBO 공식 사이트 크롤링 기능 구현
 - 웹 인터페이스 추가
 - 데이터베이스 연동 
